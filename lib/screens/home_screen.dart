@@ -6,6 +6,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../widgets/widgets.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -14,6 +16,7 @@ class HomeScreen extends StatelessWidget {
     // final size = MediaQuery.sizeOf(context);
     // final textTheme = Theme.of(context).textTheme;
     return Scaffold(
+      bottomNavigationBar: const AppNavBar(),
       appBar: AppBar(
         toolbarHeight: 128,
         flexibleSpace: Container(
@@ -101,7 +104,7 @@ class _PropertyCardState extends State<PropertyCard> {
                 onTap: (index) {
                   controller.animateToPage(
                     index,
-                    duration: const Duration(milliseconds: 400),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeIn,
                   );
                 },

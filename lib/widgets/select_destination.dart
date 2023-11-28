@@ -14,17 +14,24 @@ class SelectDestinationWidget extends StatelessWidget {
     return Card(
       elevation: 0.0,
       clipBehavior: Clip.antiAlias,
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        height: step == BookingStep.selectDestination ? 280 : 60,
         padding: const EdgeInsets.all(16.0),
         child: step == BookingStep.selectDestination
-            ? Column(
+            ? 
+            
+            
+            Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Where To?',
-                    style:
-                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+                    style: textTheme.headlineSmall!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  16.pv,
                   TextFormField(
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(16.0),
@@ -79,18 +86,21 @@ class SelectDestinationWidget extends StatelessWidget {
                   ),
                 ],
               )
-                .animate(delay: const Duration(milliseconds: 400))
-                .fadeIn(delay: const Duration(milliseconds: 400))
-            : const Row(
+                .animate(delay: const Duration(milliseconds: 300))
+                .fadeIn(duration: const Duration(milliseconds: 300))
+            : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'When',
-                    style: TextStyle(fontSize: 16),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   Text(
                     'I\'m flexible',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(fontWeight: FontWeight.bold),
                   ),
                 ],
               ),

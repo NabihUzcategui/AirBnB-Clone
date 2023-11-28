@@ -37,7 +37,9 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                 child: const Text(
                   'Stays',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               TextButton(
@@ -73,9 +75,71 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                   child: SelectDestinationWidget(step: step),
                 ),
               ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    step = BookingStep.selectDate;
+                  });
+                },
+                child: SelectDateWidget(step: step),
+              ),
+              (Step == BookingStep.selectDate)
+                  ? const SizedBox()
+                  : GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          step = BookingStep.selectGuests;
+                        });
+                      },
+                      child: SelectGuestsWidget(step: step),
+                    ),
             ],
           ),
         ),
+        bottomNavigationBar: (step == BookingStep.selectDate)
+            ? null
+            : BottomAppBar(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                notchMargin: 0,
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        if (step == BookingStep.selectDestination) {
+                          setState(() {
+                            step = BookingStep.selectGuests;
+                          });
+                        } else {
+                          setState(() {
+                            step = BookingStep.selectDestination;
+                          });
+                        }
+                      },
+                      child: Text(
+                        'clear all',
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                            ),
+                      ),
+                    ),
+                    FilledButton.icon(
+                      onPressed: () {},
+                      style: FilledButton.styleFrom(
+                        backgroundColor: appRed,
+                        minimumSize: const Size(100, 56.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      icon: const Icon(Icons.search),
+                      label: const Text('search'),
+                    )
+                  ],
+                ),
+              ),
       ),
     );
   }
