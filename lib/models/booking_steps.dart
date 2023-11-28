@@ -1,1 +1,1 @@
-enum BookingStep { selectDate, selectDestination, selectGuest }
+enum BookingStep { selectDate, selectDestination, selectGuests }
